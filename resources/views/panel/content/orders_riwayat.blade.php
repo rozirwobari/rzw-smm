@@ -45,6 +45,7 @@
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,6 +85,44 @@
                                 @endphp
                                 <td class="text-center">
                                     <span class="badge {{ $statusClass }}">{{ ucfirst($status) }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#{{ $item->id_transaksi }}">
+                                        Detail
+                                    </button>
+
+
+                                    <div class="modal fade" id="{{ $item->id_transaksi }}" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="{{ $item->id_transaksi }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="{{ $item->id_transaksi }}">Detail Pesanan
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="mb-3 text-start">
+                                                            <label for="exampleInputEmail1" class="form-label fw-bold">ID Transaksi</label>
+                                                            <textarea class="form-control" readonly>{{ $item->id_transaksi }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3 text-start">
+                                                            <label for="exampleInputEmail1" class="form-label fw-bold">Layanan</label>
+                                                            <textarea class="form-control" readonly>{{ $layanan['name'] }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3 text-start">
+                                                            <label for="exampleInputEmail1" class="form-label fw-bold">Target</label>
+                                                            <textarea class="form-control" readonly>{{ $datas['target'] }}</textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
