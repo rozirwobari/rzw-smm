@@ -69,6 +69,9 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{ route('login') }}" class="text-center">
+                        Sudah Memiliki Akun
+                    </a>
                 </div>
             </div>
         </div>
