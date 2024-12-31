@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('nominal')->default(0);
             $table->longText('snaptoken')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->string('status_label', 250)->default('Pending');
             $table->string('payment', 150)->default('Tidak Diketahui');
             $table->timestamps();
         });
