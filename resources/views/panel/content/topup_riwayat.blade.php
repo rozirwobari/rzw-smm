@@ -84,7 +84,7 @@
                                     }
                                 @endphp
                                 <td class="text-center">
-                                    <span class="badge {{ $statusClass }}">{{ $status }}</span>
+                                    <span class="badge {{ $statusClass }}">{{ $item->status_label }}</span>
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('topup.transaksi', $item->id_transaksi) }}"

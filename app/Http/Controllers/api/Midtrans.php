@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TopupModels;
+use App\Models\User;
 
 class Midtrans extends Controller
 {
@@ -12,7 +13,7 @@ class Midtrans extends Controller
     private function verifySignature($requestBody, $receivedSignature)
     {
         // Ambil server key dari config/env
-        $serverKey = config('midtrans.server_key');
+        $serverKey = "SB-Mid-server-1at9b7iJOc5LsQ5MNyBhgXdQ";
 
         // Ambil nilai yang diperlukan
         $orderId = $requestBody['order_id'];
@@ -27,6 +28,15 @@ class Midtrans extends Controller
         
         // Bandingkan dengan signature yang diterima
         return hash_equals($calculatedSignature, $receivedSignature);
+    }
+
+    private function topup($user_id, $jumlah)
+    {
+        $user = User::where('id', $user_id)->first();
+        if ($user) {
+            $user->saldo = ($user->saldo + $jumlah);
+            $user->update();
+        }
     }
 
     public function update(Request $request)
@@ -49,6 +59,7 @@ class Midtrans extends Controller
                 $transaksi->status = 1;
                 $transaksi->payment = $request->payment_type | "Transfer";
                 $transaksi->status_label = 'Paid';
+                $this->topup($transaksi->user_id, $transaksi->nominal);
             } else if ($request->transaction_status == 'cancel') {
                 $transaksi->status = 2;
                 $transaksi->payment = $request->payment_type | "Transfer";
@@ -70,5 +81,11 @@ class Midtrans extends Controller
             $transaksi->update();
         }
         return response()->json($transaksi, 201);
+    }
+
+    public function tested(Request $request) {
+        return response()->json([
+            'message' => $request->all()
+        ], 200);
     }
 }
