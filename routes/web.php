@@ -5,6 +5,9 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebSettingController;
 use App\Http\Controllers\TopupController;
+use App\Http\Controllers\api\buzzerpanel;
+use App\Http\Controllers\api\smmpanelco;
+
 
 Auth::routes();
 
@@ -23,6 +26,10 @@ Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middle
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
 Route::get('/orders/history', [OrderController::class, 'show'])->name('orders.history')->middleware('auth');
 
+Route::get('/layana2', [OrderController::class, 'layanan2'])->name('layanan2')->middleware('auth');
+Route::get('/layana2/history', [OrderController::class, 'ShowLayanan2'])->name('layanan2.history')->middleware('auth');
+Route::post('/layana2', [OrderController::class, 'StoreLayanan2'])->name('layanan2.store')->middleware('auth');
+
 Route::get('/topup', [TopupController::class, 'topupHistory'])->name('topup')->middleware('auth');
 Route::post('/topup', [TopupController::class, 'topup'])->middleware('auth');
 Route::get('/topup/transaksi/{id_transaksi}', [TopupController::class, 'transaksi'])->name('topup.transaksi')->middleware('auth');
@@ -30,6 +37,11 @@ Route::get('/topup/transaksi/{id_transaksi}', [TopupController::class, 'transaks
 Route::get('/setting', [SettingController::class, 'index'])->name('setting')->middleware('auth');
 Route::post('/setting', [SettingController::class, 'update'])->name('setting.update')->middleware('auth');
 
-
 Route::get('/website', [WebSettingController::class, 'index'])->name('website')->middleware('auth');
 Route::post('/website', [WebSettingController::class, 'update'])->name('website.update')->middleware('auth');
+
+Route::get('/buzzerpanel', [buzzerpanel::class, 'index'])->name('buzzerpanel')->middleware('auth');
+Route::post('/buzzerpanel', [buzzerpanel::class, 'update'])->name('buzzerpanel.update')->middleware('auth');
+
+Route::get('/smmpanelco', [smmpanelco::class, 'index'])->name('smmpanelco')->middleware('auth');
+Route::post('/smmpanelco', [smmpanelco::class, 'update'])->name('smmpanelco.update')->middleware('auth');

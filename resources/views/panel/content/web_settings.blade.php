@@ -41,6 +41,13 @@
                         @enderror
                     </div>
                     <div class="mb-3">
+                        <label for="gain" class="form-label">Gain</label>
+                        <input type="number" min="1" class="form-control @error('gain') is-invalid @enderror" max="100" id="gain" name="gain" placeholder="Nilai Gain" value="{{ ($website->gain/100) ?? '1' }}">
+                        @error('gain')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                         <label for="logo" class="form-label">Logo</label>
                         <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo" name="logo" placeholder="Logo Website">
                         @error('logo')

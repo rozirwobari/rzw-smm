@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 use App\Http\Controllers\api\buzzerpanel;
+use App\Http\Controllers\api\smmpanelco;
+
 
 class RZWHelper
 {
@@ -39,6 +41,13 @@ class RZWHelper
     {
         $buzzerpanel = new buzzerpanel();
         $response = $buzzerpanel->CheckOrder($id_order);
+        return $response;
+    }
+
+    public static function PanelSmmpanelcoSaldo()
+    {
+        $smmpanelco = new smmpanelco();
+        $response = $smmpanelco->GetSaldo();
         return $response;
     }
 }

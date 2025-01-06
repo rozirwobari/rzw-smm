@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->mediumText('name')->nullable();
             $table->longText('deskripsi')->nullable();
+            $table->integer('gain')->default(1);
             $table->mediumText('logo')->nullable();
             $table->mediumText('favicon')->nullable();
             $table->timestamps();

@@ -41,6 +41,32 @@
                 </ul>
             </li>
 
+            <li class="nav-item {{ request()->is('layanan2') || request()->is('layanan2/history') ? 'menu-open' : '' }}">
+                <a href="javascript:void(0)"
+                    class="nav-link {{ request()->is('layanan2') || request()->is('layanan2/history') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-tree-fill"></i>
+                    <p>
+                        Layanan 2
+                        <i class="nav-arrow bi bi-chevron-right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('layanan2') }}" class="nav-link {{ request()->is('layanan2') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-circle"></i>
+                            <p>Order Baru</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('layanan2.history') }}"
+                            class="nav-link {{ request()->is('layanan2/history') ? 'active' : '' }}"> <i
+                                class="nav-icon bi bi-circle"></i>
+                            <p>Riwayat Order</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="nav-item">
                 <a href="{{ route('topup') }}" class="nav-link {{ request()->is('topup') || request()->is('topup/transaksi/*') ? 'active' : '' }}">
                     <i class="nav-icon bi bi-speedometer"></i>
@@ -57,13 +83,29 @@
                     @csrf
                 </form>
             </li>
-            <li class="nav-header">Admin</li>
-            <li class="nav-item">
-                <a href="{{ route('website') }}" class="nav-link {{ request()->is('website') ? 'active' : '' }}">
-                    <i class="nav-icon bi bi-speedometer"></i>
-                    <p>Website Settings</p>
-                </a>
-            </li>
+
+
+            @if (Auth::user()->role->name == 'superadmin')
+                <li class="nav-header">Admin</li>
+                <li class="nav-item">
+                    <a href="{{ route('website') }}" class="nav-link {{ request()->is('website') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-globe"></i>
+                        <p>Website Settings</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('buzzerpanel') }}" class="nav-link {{ request()->is('buzzerpanel') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-fire"></i>
+                        <p>API BuzzerPanel</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('smmpanelco') }}" class="nav-link {{ request()->is('smmpanelco') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-fire"></i>
+                        <p>API smmpanel.co</p>
+                    </a>
+                </li>
+            @endif
         </ul>
     </nav>
 </div>

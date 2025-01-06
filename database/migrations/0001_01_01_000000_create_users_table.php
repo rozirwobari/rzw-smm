@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('saldo')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('role_id')->default(3);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -42,6 +43,7 @@ return new class extends Migration
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin123'),
             'saldo' => 0,
+            'role_id' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
