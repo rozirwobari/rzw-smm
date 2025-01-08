@@ -6,7 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebSettingController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\api\buzzerpanel;
-use App\Http\Controllers\api\smmpanelco;
+use App\Http\Controllers\api\irvankede;
 
 
 Auth::routes();
@@ -26,9 +26,9 @@ Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middle
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
 Route::get('/orders/history', [OrderController::class, 'show'])->name('orders.history')->middleware('auth');
 
-Route::get('/layana2', [OrderController::class, 'layanan2'])->name('layanan2')->middleware('auth');
-Route::get('/layana2/history', [OrderController::class, 'ShowLayanan2'])->name('layanan2.history')->middleware('auth');
-Route::post('/layana2', [OrderController::class, 'StoreLayanan2'])->name('layanan2.store')->middleware('auth');
+Route::get('/layanan2', [irvankede::class, 'LayanaIrvankede'])->name('layanan2')->middleware('auth');
+Route::get('/layanan2/history', [irvankede::class, 'ShowIrvanKede'])->name('layanan2.history')->middleware('auth');
+Route::post('/layanan2', [irvankede::class, 'StoreIrvanKede'])->name('layanan2.store')->middleware('auth');
 
 Route::get('/topup', [TopupController::class, 'topupHistory'])->name('topup')->middleware('auth');
 Route::post('/topup', [TopupController::class, 'topup'])->middleware('auth');
@@ -43,5 +43,5 @@ Route::post('/website', [WebSettingController::class, 'update'])->name('website.
 Route::get('/buzzerpanel', [buzzerpanel::class, 'index'])->name('buzzerpanel')->middleware('auth');
 Route::post('/buzzerpanel', [buzzerpanel::class, 'update'])->name('buzzerpanel.update')->middleware('auth');
 
-Route::get('/smmpanelco', [smmpanelco::class, 'index'])->name('smmpanelco')->middleware('auth');
-Route::post('/smmpanelco', [smmpanelco::class, 'update'])->name('smmpanelco.update')->middleware('auth');
+Route::get('/irvankede', [irvankede::class, 'index'])->name('irvankede')->middleware('auth');
+Route::post('/irvankede', [irvankede::class, 'update'])->name('irvankede.update')->middleware('auth');

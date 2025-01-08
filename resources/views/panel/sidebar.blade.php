@@ -41,9 +41,9 @@
                 </ul>
             </li>
 
-            <li class="nav-item {{ request()->is('layanan2') || request()->is('layanan2/history') ? 'menu-open' : '' }}">
+            <li class="nav-item {{ request()->is('layanan2') || request()->is('layanan2/*') ? 'menu-open' : '' }}">
                 <a href="javascript:void(0)"
-                    class="nav-link {{ request()->is('layanan2') || request()->is('layanan2/history') ? 'active' : '' }}">
+                    class="nav-link {{ request()->is('layanan2') || request()->is('layanan2/*') ? 'active' : '' }}">
                     <i class="nav-icon bi bi-tree-fill"></i>
                     <p>
                         Layanan 2
@@ -100,9 +100,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('smmpanelco') }}" class="nav-link {{ request()->is('smmpanelco') ? 'active' : '' }}">
+                    <a href="{{ route('irvankede') }}" class="nav-link {{ request()->is('irvankede') ? 'active' : '' }}">
                         <i class="nav-icon fa-solid fa-fire"></i>
-                        <p>API smmpanel.co</p>
+                        <p>API irvankedesmm.co.id</p>
                     </a>
                 </li>
             @endif
