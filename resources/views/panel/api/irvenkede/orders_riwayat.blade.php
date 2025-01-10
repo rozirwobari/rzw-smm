@@ -41,7 +41,8 @@
                     <thead>
                         <tr class="text-center">
                             <th style="width: 10px">No</th>
-                            <th>Layanan</th>
+                            <th class="text-start">Category</th>
+                            <th class="text-start">Layanan</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Status</th>
@@ -56,14 +57,15 @@
                             @endphp
                             <tr class="align-middle">
                                 <td>{{ $loop->iteration }}.</td>
+                                <td>{{ $layanan['category'] }}</td>
                                 <td>{{ $layanan['name'] }}</td>
                                 <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->nominal) }}</td>
                                 <td class="text-center">{{ RZWHelper::FormatNumber($datas['jumlah']) }}</td>
 
                                 @php
                                     $statusClass = '';
-                                    $status = RZWHelper::APICheckOrder($item->api_orderid)['data']['status'];
-                                    switch (RZWHelper::APICheckOrder($item->api_orderid)['data']['status']) {
+                                    $status = RZWHelper::APICheckOrderIrvanKede($item->api_orderid)['data']['status'];
+                                    switch ($status) {
                                         case 'Success':
                                             $statusClass = 'text-bg-success';
                                             break;
@@ -109,6 +111,10 @@
                                                         <div class="mb-3 text-start">
                                                             <label for="exampleInputEmail1" class="form-label fw-bold">ID Transaksi</label>
                                                             <textarea class="form-control" readonly>{{ $item->id_transaksi }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3 text-start">
+                                                            <label for="exampleInputEmail1" class="form-label fw-bold">Category</label>
+                                                            <textarea class="form-control" readonly>{{ $layanan['category'] }}</textarea>
                                                         </div>
                                                         <div class="mb-3 text-start">
                                                             <label for="exampleInputEmail1" class="form-label fw-bold">Layanan</label>

@@ -15,9 +15,9 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ request()->is('orders') || request()->is('orders/history') ? 'menu-open' : '' }}">
+            <li class="nav-item {{ request()->is('layanan1') || request()->is('layanan1/*') ? 'menu-open' : '' }}">
                 <a href="javascript:void(0)"
-                    class="nav-link {{ request()->is('orders') || request()->is('orders/history') ? 'active' : '' }}">
+                    class="nav-link {{ request()->is('layanan1') || request()->is('layanan1/*') ? 'active' : '' }}">
                     <i class="nav-icon bi bi-tree-fill"></i>
                     <p>
                         Layanan 1
@@ -26,14 +26,14 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('orders') }}" class="nav-link {{ request()->is('orders') ? 'active' : '' }}">
+                        <a href="{{ route('layanan1') }}" class="nav-link {{ request()->is('layanan1') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-circle"></i>
                             <p>Order Baru</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('orders.history') }}"
-                            class="nav-link {{ request()->is('orders/history') ? 'active' : '' }}"> <i
+                        <a href="{{ route('layanan1.history') }}"
+                            class="nav-link {{ request()->is('layanan1/history') ? 'active' : '' }}"> <i
                                 class="nav-icon bi bi-circle"></i>
                             <p>Riwayat Order</p>
                         </a>
@@ -41,30 +41,11 @@
                 </ul>
             </li>
 
-            <li class="nav-item {{ request()->is('layanan2') || request()->is('layanan2/*') ? 'menu-open' : '' }}">
-                <a href="javascript:void(0)"
-                    class="nav-link {{ request()->is('layanan2') || request()->is('layanan2/*') ? 'active' : '' }}">
-                    <i class="nav-icon bi bi-tree-fill"></i>
-                    <p>
-                        Layanan 2
-                        <i class="nav-arrow bi bi-chevron-right"></i>
-                    </p>
+            <li class="nav-item">
+                <a href="{{ route('transaksi') }}" class="nav-link {{ request()->is('transaksi') || request()->is('transaksi') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-speedometer"></i>
+                    <p>Semua Transaksi</p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('layanan2') }}" class="nav-link {{ request()->is('layanan2') ? 'active' : '' }}">
-                            <i class="nav-icon bi bi-circle"></i>
-                            <p>Order Baru</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('layanan2.history') }}"
-                            class="nav-link {{ request()->is('layanan2/history') ? 'active' : '' }}"> <i
-                                class="nav-icon bi bi-circle"></i>
-                            <p>Riwayat Order</p>
-                        </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="nav-item">
@@ -94,9 +75,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('buzzerpanel') }}" class="nav-link {{ request()->is('buzzerpanel') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-fire"></i>
-                        <p>API BuzzerPanel</p>
+                    <a href="{{ route('users.manage') }}" class="nav-link {{ request()->is('users.manage') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-globe"></i>
+                        <p>Manage Users</p>
                     </a>
                 </li>
                 <li class="nav-item">

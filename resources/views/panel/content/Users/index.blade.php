@@ -18,13 +18,13 @@
         <div class="container-fluid"> <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Riwayat Order</h3>
+                    <h3 class="mb-0">Users Management</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Riwayat Order
+                            Users Management
                         </li>
                     </ol>
                 </div>
@@ -34,31 +34,35 @@
     <div class="container">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">Riwayat Order</h3>
+                <h3 class="card-title">Users Management</h3>
             </div> <!-- /.card-header -->
             <div class="card-body p-0">
                 <table class="table table-striped">
                     <thead>
                         <tr class="text-center">
                             <th style="width: 10px">No</th>
-                            <th class="text-start">Category</th>
-                            <th class="text-start">Layanan</th>
-                            <th>Harga</th>
-                            <th>Jumlah</th>
+                            <th style="width: 10px">ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Saldo</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($transaksi as $item)
-                            @php
-                                $datas = json_decode($item->data, true);
-                                $layanan = $datas['layanan'];
-                            @endphp
+                        @foreach ($users as $item)
+                        
                             <tr class="align-middle">
                                 <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $layanan['category'] }}</td>
-                                <td>{{ $layanan['name'] }}</td>
-                                <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->nominal) }}</td>
-                                <td class="text-center">{{ RZWHelper::FormatNumber($datas['jumlah']) }}</td>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->saldo) }}</td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-warning">Edit</a>
+                                    @if ($item->id !== Auth::user()->id)
+                                    <a href="" class="btn btn-danger">Hapus</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

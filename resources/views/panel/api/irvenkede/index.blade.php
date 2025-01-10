@@ -49,6 +49,14 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="convert" class="form-label">Gain (%)</label>
+                    <input type="text" class="form-control @error('convert') is-invalid @enderror" id="convert" name="convert" min="0" max="100"
+                        placeholder="Selisih Diperloeh (%) MAX 100%" value="{{ ($website->convert * 100) }}">
+                    @error('convert')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 @if (isset($website->api_key) && isset($website->host))
                 <div class="mb-3">

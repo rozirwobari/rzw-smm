@@ -23,7 +23,7 @@
     </div>
     <div class="container">
         <div class="card card-primary card-outline mb-4"> <!--begin::Header-->
-            <form action="{{ route('layanan2.store') }}" method="POST">
+            <form action="{{ route('layanan1.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="mb-3">

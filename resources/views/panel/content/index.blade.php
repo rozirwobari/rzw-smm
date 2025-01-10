@@ -57,7 +57,7 @@
                             <path
                                 d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z">
                             </path>
-                        </svg> <a href="{{ url('orders/history') }}"
+                        </svg> <a href="{{ url('transaksi') }}"
                             class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                             Transaksi <i class="bi bi-link-45deg"></i> </a>
                     </div> <!--end::Small Box Widget 2-->
@@ -90,7 +90,7 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z">
                             </path>
-                        </svg> <a href="{{ route('orders.history') }}"
+                        </svg> <a href="{{ route('transaksi') }}"
                             class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                             Transaksi <i class="bi bi-link-45deg"></i> </a>
                     </div> <!--end::Small Box Widget 4-->

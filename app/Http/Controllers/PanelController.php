@@ -81,6 +81,15 @@ class PanelController extends Controller
         return [$transaksiList];
     }
 
+
+    public function AllTransaksi()
+    {
+        $user = Auth::user();
+        $transaksi = TransaksiModels::where('user_id', $user->id)->get();
+        return view('panel.content.orders_riwayat', compact('transaksi'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -100,10 +109,7 @@ class PanelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

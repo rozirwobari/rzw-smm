@@ -16,7 +16,7 @@ return new class extends Migration
             $table->longText('name')->nullable();
             $table->longText('api_key')->nullable();
             $table->longText('secret_key')->nullable();
-            $table->integer('convert')->default(1);
+            $table->float('convert', 8, 2)->default(1);
             $table->longText('host')->nullable(); 
             $table->timestamps();
         });

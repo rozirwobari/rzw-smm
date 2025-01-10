@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PanelController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebSettingController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\api\buzzerpanel;
 use App\Http\Controllers\api\irvankede;
+use App\Http\Controllers\ManageUsers;
 
 
 Auth::routes();
@@ -21,14 +21,12 @@ Route::get('/', function () {
 
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel')->middleware('auth');
-Route::get('/orders', [OrderController::class, 'index'])->name('orders')->middleware('auth');
+Route::get('/transaksi', [PanelController::class, 'AllTransaksi'])->name('transaksi')->middleware('auth');
+Route::get('/users', [ManageUsers::class, 'index'])->name('users.manage')->middleware('auth');
 
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
-Route::get('/orders/history', [OrderController::class, 'show'])->name('orders.history')->middleware('auth');
-
-Route::get('/layanan2', [irvankede::class, 'LayanaIrvankede'])->name('layanan2')->middleware('auth');
-Route::get('/layanan2/history', [irvankede::class, 'ShowIrvanKede'])->name('layanan2.history')->middleware('auth');
-Route::post('/layanan2', [irvankede::class, 'StoreIrvanKede'])->name('layanan2.store')->middleware('auth');
+Route::get('/layanan1', [irvankede::class, 'LayanaIrvankede'])->name('layanan1')->middleware('auth');
+Route::get('/layanan1/history', [irvankede::class, 'ShowIrvanKede'])->name('layanan1.history')->middleware('auth');
+Route::post('/layanan1', [irvankede::class, 'StoreIrvanKede'])->name('layanan1.store')->middleware('auth');
 
 Route::get('/topup', [TopupController::class, 'topupHistory'])->name('topup')->middleware('auth');
 Route::post('/topup', [TopupController::class, 'topup'])->middleware('auth');

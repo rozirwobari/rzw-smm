@@ -27,6 +27,7 @@ class TransaksiUpdate implements ShouldQueue
         $transactions = TransaksiModels::whereNull('status')
             ->orWhere('status_checked_at', '<', now()->subMinutes(5))
             ->get();
+            
         foreach ($transactions as $transaction) {
             try {
                 $buzzerpanel = new buzzerpanel();

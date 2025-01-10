@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ApiModels;
 use App\Jobs\TransaksiUpdate;
 use App\Models\TransaksiModels;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class irvankede extends Controller
 {
@@ -25,6 +27,14 @@ class irvankede extends Controller
         $this->host = $irvankede->host;
     }
 
+    private function GenerateIdTransaksi($length = 15)
+    {
+        $randomString = Str::random($length);
+        $randomNumber = rand(1000, 9999);
+        $transactionId = strtoupper($randomString . $randomNumber);
+        return $transactionId;
+    }
+
     public function index()
     {
         $website = ApiModels::where('name', 'irvankede')->first();
@@ -38,6 +48,7 @@ class irvankede extends Controller
             'api_key' => $request->api_key,
             'secret_key' => $request->secret_key,
             'host' => $request->host,
+            'convert' => ($request->convert / 100),
         ]);
         return redirect()->back()->with('alert', [
             'type' => 'success',
@@ -77,7 +88,7 @@ class irvankede extends Controller
                 'target.required' => 'Target harus diisi',
             ]);
 
-            $data = collect($this->DataIrvanKede['data']);
+            $data = collect($this->GetLayanan()['data']);
             $layanan = $data->firstWhere('id', $id_layanan);
             try {
                 $validated = $request->validate([
@@ -90,7 +101,7 @@ class irvankede extends Controller
                 ]);
 
                 $priceReal = $layanan['price'] / 1000;
-                $kurs = $this->irvankede->GetKurs();
+                $kurs = $this->GetKurs();
                 $total_kurs = ceil($priceReal * $jumlah) * $kurs;
                 $total_harga = ceil($priceReal * $jumlah) + $total_kurs;
 
@@ -102,7 +113,7 @@ class irvankede extends Controller
                     ]);
                 }
 
-                $responseirvankede = $this->irvankede->CreateLayanan($id_layanan, $target, $jumlah);
+                $responseirvankede = $this->CreateLayanan($id_layanan, $target, $jumlah);
                 if (!$responseirvankede['status']) {
                     return redirect()->back()->with('alert', [
                         'type' => 'error',
@@ -130,7 +141,7 @@ class irvankede extends Controller
                 $user->saldo -= $total_harga;
                 $user->save();
 
-                return redirect()->route('orders')->with('alert', [
+                return redirect()->route('layanan1.history')->with('alert', [
                     'type' => 'success',
                     'description' => 'Order Berhasil',
                     'title' => 'Berhasil',
@@ -183,7 +194,6 @@ class irvankede extends Controller
 
     public function CreateLayanan($id_layanan, $target, $quantity)
     {
-
         try {
             $data = [
                 'api_id' => $this->api_id,
@@ -208,13 +218,12 @@ class irvankede extends Controller
     public function CheckOrder($id_order)
     {
         $data = [
+            'api_id' => $this->api_id,
             'api_key' => $this->api_key,
-            'action' => 'status',
-            'secret_key' => $this->secret_key,
 
             'id' => $id_order,
         ];
-        $response = Http::asForm()->post('https://buzzerpanel.id/api/json.php', $data);
+        $response = Http::asForm()->post('https://irvankedesmm.co.id/api/status', $data);
         $data = $response->json(null, true);
         if (!$data['status']) {
             return [

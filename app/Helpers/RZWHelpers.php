@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Helpers;
-use App\Http\Controllers\api\buzzerpanel;
-use App\Http\Controllers\api\smmpanelco;
+use App\Http\Controllers\api\irvankede;
 
 
 class RZWHelper
@@ -37,17 +36,10 @@ class RZWHelper
         return number_format($number, 0, ',', '.');
     }
 
-    public static function APICheckOrder($id_order)
+    public static function APICheckOrderIrvanKede($id_order)
     {
-        $buzzerpanel = new buzzerpanel();
-        $response = $buzzerpanel->CheckOrder($id_order);
-        return $response;
-    }
-
-    public static function PanelSmmpanelcoSaldo()
-    {
-        $smmpanelco = new smmpanelco();
-        $response = $smmpanelco->GetSaldo();
+        $irvankede = new irvankede();
+        $response = $irvankede->CheckOrder($id_order);
         return $response;
     }
 }
