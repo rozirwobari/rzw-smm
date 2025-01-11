@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('users.manage') }}" class="nav-link {{ request()->is('users.manage') ? 'active' : '' }}">
+                    <a href="{{ route('users.manage') }}" class="nav-link {{ (request()->is('users') || request()->is('users/*') || request()->is('users/*/*')) ? 'active' : '' }}">
                         <i class="nav-icon fa-solid fa-globe"></i>
                         <p>Manage Users</p>
                     </a>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Models\WebSettingModel;
+
+
 class ManageUsers extends Controller
 {
     /**
@@ -14,7 +17,8 @@ class ManageUsers extends Controller
     public function index()
     {
         $users = User::all();
-        return view('panel.content.Users.index', compact('users'));
+        $website = WebSettingModel::first();
+        return view('panel.content.Users.index', compact('users', 'website'));
     }
 
     /**
@@ -38,7 +42,9 @@ class ManageUsers extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        $website = WebSettingModel::first();
+        return view('panel.content.Users.edit', compact('user', 'website'));
     }
 
     /**
@@ -54,7 +60,16 @@ class ManageUsers extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->saldo = $request->saldo;
+        $user->save();
+        return redirect()->route('users.manage')->with('alert', [
+            'type' => 'success',
+            'description' => 'Data User ' . $user->name . ' Berhasil Diubah',
+            'title' => 'Berhasil'
+        ]);
     }
 
     /**

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Midtrans\Transaction;
+use App\Models\WebSettingModel;
 
 class TopupController extends Controller
 {
@@ -27,7 +28,8 @@ class TopupController extends Controller
      */
     public function index()
     {
-        return view('panel.content.topup');
+        $website = WebSettingModel::first();
+        return view('panel.content.topup', compact('website'));
     }
 
     /**
@@ -100,17 +102,22 @@ class TopupController extends Controller
     {
         $transaksi = TopupModels::where('id_transaksi', $id_transaksi)->first();
         if ($transaksi) {
-            return view('panel.content.topup_transaksi', compact('transaksi'));
+            $website = WebSettingModel::first();
+            return view('panel.content.topup_transaksi', compact('transaksi', 'website'));
         } else {
-            return redirect()->back()->with('error', 'Transaksi tidak ditemukan');
+            return redirect()->back()->with('alert', [
+                'type' => 'danger',
+                'description' => 'Transaksi Tidak Ditemukan',
+                'title' => 'Ops!'
+            ]);
         }
-        // return view('panel.content.topup_transaksi');
     }
 
     public function topupHistory()
     {
+        $website = WebSettingModel::first();
         $topup = TopupModels::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view('panel.content.topup_riwayat', compact('topup'));
+        return view('panel.content.topup_riwayat', compact('topup', 'website'));
     }
 
     /**

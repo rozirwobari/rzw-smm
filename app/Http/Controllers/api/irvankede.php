@@ -12,6 +12,7 @@ use App\Jobs\TransaksiUpdate;
 use App\Models\TransaksiModels;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\WebSettingModel;
 
 class irvankede extends Controller
 {
@@ -61,7 +62,8 @@ class irvankede extends Controller
     {
         $data = $this->GetLayanan();
         $kurs = $this->GetKurs();
-        return view('panel.api.irvenkede.order', compact('data', 'kurs'));
+        $website = WebSettingModel::first();
+        return view('panel.api.irvenkede.order', compact('data', 'kurs', 'website'));
     }
 
     public function ShowIrvanKede()
@@ -69,8 +71,9 @@ class irvankede extends Controller
         $job = new TransaksiUpdate();
         $job->dispatch();
 
+        $website = WebSettingModel::first();
         $transaksi = TransaksiModels::query()->where('user_id', Auth::id())->where('layanan', 'irvankede')->latest()->get();
-        return view('panel.api.irvenkede.orders_riwayat', compact('transaksi'));
+        return view('panel.api.irvenkede.orders_riwayat', compact('transaksi', 'website'));
     }
 
     public function StoreIrvanKede(Request $request)

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TopupModels;
 use App\Models\TransaksiModels;
+use App\Models\WebSettingModel;
 
 class PanelController extends Controller
 {
@@ -19,9 +20,10 @@ class PanelController extends Controller
         $transaksi = TransaksiModels::where('user_id', $user->id)->get();
         $transaksiBulanan = $this->TransaksiBulanan($user->id);
         $transaksiMingguan = $this->TransaksiMingguan($user->id);
+        $website = WebSettingModel::first();
         // print(json_encode($transaksiMingguan));
         // dd();
-        return view('panel.content.index', compact('user', 'topup', 'transaksi', 'transaksiBulanan', 'transaksiMingguan'));
+        return view('panel.content.index', compact('user', 'topup', 'transaksi', 'transaksiBulanan', 'transaksiMingguan' ,'website'));
     }
 
 
@@ -86,7 +88,8 @@ class PanelController extends Controller
     {
         $user = Auth::user();
         $transaksi = TransaksiModels::where('user_id', $user->id)->get();
-        return view('panel.content.orders_riwayat', compact('transaksi'));
+        $website = WebSettingModel::first();
+        return view('panel.content.orders_riwayat', compact('transaksi', 'website'));
     }
 
 

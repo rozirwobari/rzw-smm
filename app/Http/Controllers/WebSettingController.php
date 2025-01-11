@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WebSettingModel;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class WebSettingController extends Controller
 {
@@ -68,6 +69,7 @@ class WebSettingController extends Controller
 
         $website = WebSettingModel::first();
         $logo = $request->file('logo');
+        $favicon = $request->file('favicon');
         if ($logo) {
             $validatorLogo = Validator::make($request->all(), [
                 'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:204800',
@@ -84,9 +86,30 @@ class WebSettingController extends Controller
 
             $originalName = $logo->getClientOriginalName();
             $extension = $logo->getClientOriginalExtension();
-            $logoName = time() . Auth::user()->id . '.' . $extension;
-            $logo->storeAs('public/logo', $logoName);
-            $website->logo = 'public/logo/' . $logoName;
+            $logoName = 'logo.' . $extension;
+            $logo->move(public_path('logo'), $logoName);
+            $website->logo = 'logo/' . $logoName;
+        }
+
+        if ($favicon) {
+            $validatorLogo = Validator::make($request->all(), [
+                'favicon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:204800',
+            ],[
+                'favicon.image' => 'Logo harus berupa gambar',
+                'favicon.mimes' => 'Logo harus berupa file dengan tipe: jpeg, png, jpg, gif, svg',
+                'favicon.max' => 'Logo harus kurang dari 200MB',
+            ]);
+
+            if ($validatorLogo->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            
+
+            $originalName = $favicon->getClientOriginalName();
+            $extension = $favicon->getClientOriginalExtension();
+            $logoName = 'favicon.' . $extension;
+            $favicon->move(public_path('logo'), $logoName);
+            $website->favicon = 'logo/' . $logoName;
         }
 
         $website->name = $request->web_name;

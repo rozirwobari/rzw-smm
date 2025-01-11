@@ -4,6 +4,8 @@
 
 @extends('panel.layout')
 
+@section('title', 'Manage Users')
+
 @section('css')
     <style>
         .rzw-bg-purple {
@@ -58,7 +60,7 @@
                                 <td>{{ $item->email }}</td>
                                 <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->saldo) }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route("users.edit", $item->id) }}" class="btn btn-warning">Edit</a>
                                     @if ($item->id !== Auth::user()->id)
                                     <a href="" class="btn btn-danger">Hapus</a>
                                     @endif
