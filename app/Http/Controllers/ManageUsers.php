@@ -77,6 +77,12 @@ class ManageUsers extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users.manage')->with('alert', [
+            'type' => 'success',
+            'description' => 'Data User ' . $user->name . ' Berhasil Dihapus',
+            'title' => 'Berhasil'
+        ]);
     }
 }

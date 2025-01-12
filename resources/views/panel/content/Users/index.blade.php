@@ -62,7 +62,7 @@
                                 <td class="text-center">
                                     <a href="{{ route("users.edit", $item->id) }}" class="btn btn-warning">Edit</a>
                                     @if ($item->id !== Auth::user()->id)
-                                    <a href="" class="btn btn-danger">Hapus</a>
+                                    <button class="btn btn-danger" onclick="HapusUser('{{ $item->name }}', '{{ $item->id }}')">Hapus</button>
                                     @endif
                                 </td>
                             </tr>
@@ -72,4 +72,23 @@
             </div> <!-- /.card-body -->
         </div>
     </div>
+@endsection
+
+
+@section('js')
+    <script>
+        function HapusUser(name, id) {
+            Swal.fire({
+                title: "Apakah Kamu Yakin?",
+                text: "Kamu Yaking Ingin Menghapus User " + name,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                window.location.href = `{{ url('users/delete/${id}') }}`;
+            });
+        }
+    </script>
 @endsection
