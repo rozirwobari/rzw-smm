@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <a href="../index2.html"><b>RZW Panel SMM</b></a>
+            <a href="../index2.html"><b>{{ $website->name }}</b></a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Masuk KE Akun Yang Sudah Terdaftar</p>
                 <form action="{{ route('login') }}" method="post">
                 @csrf
                     <div class="input-group mb-3">
@@ -50,14 +52,14 @@
 
 
                         <div class="col-4">
-                            <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Sign In</button>
+                            <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Masuk</button>
                             </div>
                         </div>
                     </div>
                 </form>
                 <p class="mb-0">
                     <a href="{{ route('register') }}" class="text-center">
-                        Register a new membership
+                        Belum Memiliki Akun?
                     </a>
                 </p>
             </div>
