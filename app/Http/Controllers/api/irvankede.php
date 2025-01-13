@@ -69,6 +69,21 @@ class irvankede extends Controller
         $data = $this->GetLayanan();
         $kurs = $this->GetKurs();
         $website = WebSettingModel::first();
+        if ((!isset($data) || !isset($kurs)) && Auth::user()->role->name == 'superadmin') {
+            return redirect()->route("irvankede")->with('alert', [
+                'type' => 'error',
+                'description' => 'Isi Data API Terlebih Dahulu',
+                'title' => 'Oppss',
+            ]);
+        }
+
+        if ((!isset($data) || !isset($kurs))) {
+            return redirect()->route("panel")->with('alert', [
+                'type' => 'error',
+                'description' => 'Terjadi Kesalahan, Silahkan Coba Lain Kali',
+                'title' => 'Oppss',
+            ]);
+        }
         return view('panel.api.irvenkede.order', compact('data', 'kurs', 'website'));
     }
 
@@ -78,7 +93,12 @@ class irvankede extends Controller
         $job->dispatch();
 
         $website = WebSettingModel::first();
-        $transaksi = TransaksiModels::query()->where('user_id', Auth::id())->where('layanan', 'irvankede')->latest()->get();
+        $transaksi = TransaksiModels::query()
+        ->where('user_id', Auth::id())
+        ->where('layanan', 'irvankede')
+        ->latest()
+        ->get()
+        ->when(fn($collection) => $collection->isEmpty(), fn() => [], fn($collection) => $collection);
         return view('panel.api.irvenkede.orders_riwayat', compact('transaksi', 'website'));
     }
 
