@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('nominal')->default(0);
             $table->json('data')->default('[]');
             $table->string('status' , 150)->default('Pending');
+            $table->string('layanan', 250);
             $table->timestamp('status_checked_at')->default(now());
             $table->timestamps();
         });
