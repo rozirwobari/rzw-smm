@@ -21,7 +21,13 @@ class irvankede extends Controller
     {
         $apimodels = new ApiModels();
         $this->irvankede = $apimodels;
-        $irvankede = $apimodels::where('name', 'irvankede')->first();
+        $irvankede = $apimodels::firstOrCreate(
+            ['name' => 'irvankede'], // kondisi pencarian
+            [
+                'name' => 'irvankede',
+                // tambahkan field lain yang diperlukan disini
+            ]
+        );
         $this->irvankede = $irvankede;
         $this->api_key = $irvankede->api_key;
         $this->api_id = $irvankede->secret_key;
@@ -38,13 +44,7 @@ class irvankede extends Controller
 
     public function index()
     {
-        $website = ApiModels::firstOrCreate(
-            ['name' => 'irvankede'], // kondisi pencarian
-            [
-                'name' => 'irvankede',
-                // tambahkan field lain yang diperlukan disini
-            ]
-        );
+        $website = ApiModels::where('name', 'irvankede')->first();
         return view('panel.api.irvenkede.index', compact('website'));
     }
 
