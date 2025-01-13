@@ -13,7 +13,7 @@ class Midtrans extends Controller
     private function verifySignature($requestBody, $receivedSignature)
     {
         // Ambil server key dari config/env
-        $serverKey = "SB-Mid-server-1at9b7iJOc5LsQ5MNyBhgXdQ";
+        $serverKey = env('MIDTRANS_SERVER_KEY');
 
         // Ambil nilai yang diperlukan
         $orderId = $requestBody['order_id'];

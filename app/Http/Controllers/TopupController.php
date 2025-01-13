@@ -17,10 +17,10 @@ class TopupController extends Controller
 {
     public function __construct()
     {
-        Config::$serverKey = "SB-Mid-server-1at9b7iJOc5LsQ5MNyBhgXdQ";
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
+        Config::$isSanitized = env('MIDTRANS_IS_SANITIZED');
+        Config::$is3ds = env('MIDTRANS_IS_3DS');
     }
 
     /**
