@@ -129,7 +129,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('panels/js/adminlte.js') }}"></script> 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script> <!-- ChartJS -->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY'); }}"></script>
+    <script src="{{ env('MIDTRANS_URL_CLIENT'); }}" data-client-key="{{ env('MIDTRANS_CLIENT_KEY'); }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset("module/lightbox2/js/lightbox.min.js") }}"></script>
     @yield('js')
