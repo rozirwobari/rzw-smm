@@ -38,7 +38,13 @@ class irvankede extends Controller
 
     public function index()
     {
-        $website = ApiModels::where('name', 'irvankede')->first();
+        $website = ApiModels::firstOrCreate(
+            ['name' => 'irvankede'], // kondisi pencarian
+            [
+                'name' => 'irvankede',
+                // tambahkan field lain yang diperlukan disini
+            ]
+        );
         return view('panel.api.irvenkede.index', compact('website'));
     }
 
