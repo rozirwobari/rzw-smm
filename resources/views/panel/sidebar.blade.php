@@ -1,7 +1,9 @@
 <div class="sidebar-brand">
-    <a href="{{ route('panel') }}" class="brand-link"> <img src="{{ asset('panels/img/AdminLTELogo.png') }}"
-            alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
-        <span class="brand-text fw-light">AdminLTE 4</span>
+    <a href="{{ route('panel') }}" class="brand-link">
+        <div class="circle-container" style="width: 35px; height: 35px; border-radius: 0%;">
+            <img src="{{ asset($website->logo) }}" alt="AdminLTE Logo" class="brand-image opacity-75 shadow circle-image">
+        </div>
+        <span class="brand-text fw-light">{{ $website->name }}</span>
     </a>
 </div>
 

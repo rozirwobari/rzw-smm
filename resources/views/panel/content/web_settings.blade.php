@@ -2,30 +2,6 @@
 
 @section('title', 'Website Settings')
 
-@section('css')
-<style>
-    .circle-container {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .circle-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .caption {
-        text-align: center;
-        margin-top: 10px;
-        font-family: Arial, sans-serif;
-    }
-</style>
-@endsection
-
 @section('content')
 <div class="app-content-header">
     <!--begin::Container-->
