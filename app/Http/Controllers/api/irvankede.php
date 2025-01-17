@@ -170,10 +170,15 @@ class irvankede extends Controller
                 $user->saldo -= $total_harga;
                 $user->save();
 
-                return redirect()->route('layanan1.history')->with('alert', [
+                return redirect()->back()->with('alert', [
                     'type' => 'success',
                     'description' => 'Order Berhasil',
                     'title' => 'Berhasil',
+                    'data' => [
+                        'layanan' => $layanan,
+                        'target' => $target,
+                        'jumlah' => $jumlah,
+                    ]
                 ]);
 
             } catch (ValidationException $e) {

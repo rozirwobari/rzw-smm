@@ -22,6 +22,14 @@
         </div> <!--end::Container-->
     </div>
     <div class="container">
+        @if (session('alert') && isset(session('alert')['data']))
+            <div class="alert alert-success" role="alert">
+                <b>Pesanan Berhasil</b><br>
+                Layanan : {{ session('alert')['data']['layanan'] }} <br>
+                Target : {{ session('alert')['data']['target'] }} <br>
+                Jumlah : {{ session('alert')['data']['jumlah'] }}
+            </div>
+        @endif
         <div class="card card-primary card-outline mb-4"> <!--begin::Header-->
             <form action="{{ route('layanan1.store') }}" method="POST">
                 @csrf
