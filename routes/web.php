@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::get('/panel', [PanelController::class, 'index'])->name('panel')->middleware('auth');
 Route::get('/transaksi', [PanelController::class, 'AllTransaksi'])->name('transaksi')->middleware('auth');
 Route::get('/users', [ManageUsers::class, 'index'])->name('users.manage')->middleware('auth');
+Route::get('/profile', [ManageUsers::class, 'profile'])->name('profile')->middleware('auth');
+Route::post('/profile/{user_id}', [ManageUsers::class, 'profileSaved'])->name('profile.saved')->middleware('auth');
 Route::get('/users/edit/{user_id}', [ManageUsers::class, 'show'])->name('users.edit')->middleware('auth');
 Route::post('/users/saved/{user_id}', [ManageUsers::class, 'update'])->name('users.saved')->middleware('auth');
 Route::get('/users/delete/{user_id}', [ManageUsers::class, 'destroy'])->name('users.delete')->middleware('auth');

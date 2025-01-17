@@ -57,6 +57,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('profile') }}" class="nav-link {{ request()->is('profile') || request()->is('profile/*') ? 'active' : '' }}">
+                    <i class="nav-icon fa-solid fa-user"></i>
+                    <p>Profile</p>
+                </a>
+            </li>
+
             @if (Auth::user()->role->name == 'superadmin')
                 <li class="nav-header">Admin Listed <i class="fa-solid fa-user-tie"></i></li>
                 <li class="nav-item">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 use App\Models\WebSettingModel;
+use Illuminate\Support\Facades\Hash;
 
 
 class ManageUsers extends Controller
@@ -24,9 +25,45 @@ class ManageUsers extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function profile()
     {
-        //
+        $user = Auth::user();
+        $website = WebSettingModel::first();
+        return view('panel.content.Users.profile', compact('user', 'website'));
+    }
+
+    public function profileSaved(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $rules = [
+            'name' => 'required|string|max:255',
+        ];
+        if ($request->filled('oldpassword')) {
+            $rules['oldpassword'] = 'required';
+            $rules['newpassword'] = 'required|min:8';
+        }
+
+        $request->validate($rules);
+        $user->name = $request->name;
+
+        if ($request->filled('oldpassword')) {
+            if (!Hash::check($request->oldpassword, $user->password)) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['oldpassword' => 'Password lama tidak sesuai']);
+            }
+
+            $user->password = Hash::make($request->newpassword);
+        }
+
+        $user->save();
+        return redirect()
+            ->back()
+            ->with('alert', [
+                'type' => 'success',
+                'description' => 'Data Berhasil Di Update',
+                'title' => 'Berhasil'
+            ]);
     }
 
     /**
