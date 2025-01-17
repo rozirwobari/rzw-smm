@@ -175,7 +175,7 @@ class irvankede extends Controller
                     'description' => 'Order Berhasil',
                     'title' => 'Berhasil',
                     'data' => [
-                        'layanan' => $layanan,
+                        'layanan' => $layanan['category'] .' | ' . $layanan['name'],
                         'target' => $target,
                         'jumlah' => $jumlah,
                     ]
