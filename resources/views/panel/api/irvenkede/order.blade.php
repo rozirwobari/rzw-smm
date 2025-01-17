@@ -23,9 +23,6 @@
     </div>
     <div class="container">
         @if (session('alert') && isset(session('alert')['data']))
-            @php
-                dd(session('alert')); // tambahkan ini untuk melihat struktur data
-            @endphp
             <div class="alert alert-success" role="alert">
                 <b>{{ session('alert')['title'] }}</b><br>
                 Layanan : {{ is_array(session('alert')['data']['layanan']) ? json_encode(session('alert')['data']['layanan']) : session('alert')['data']['layanan'] }} <br>
