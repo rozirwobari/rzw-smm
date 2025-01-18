@@ -46,6 +46,7 @@
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Status</th>
+                            <th>Tgm Pemesanan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -60,6 +61,7 @@
                                 <td>{{ $layanan['category'] }}</td>
                                 <td>{{ $layanan['name'] }}</td>
                                 <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->nominal) }}</td>
+                                <td class="text-center">{{ RZWHelper::FormatTanggal($item->created_at) }}</td>
                                 <td class="text-center">{{ RZWHelper::FormatNumber($datas['jumlah']) }}</td>
 
                                 @php

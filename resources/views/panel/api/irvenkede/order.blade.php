@@ -1,5 +1,8 @@
-@extends('panel.layout')
+@php
+    use App\Helpers\RZWHelper;
+@endphp
 
+@extends('panel.layout')
 
 @section('title', 'Orders')
 
@@ -25,9 +28,10 @@
         @if (session('alert') && isset(session('alert')['data']))
             <div class="alert alert-success" role="alert">
                 <b>{{ session('alert')['title'] }}</b><br>
-                Layanan : {{ is_array(session('alert')['data']['layanan']) ? json_encode(session('alert')['data']['layanan']) : session('alert')['data']['layanan'] }} <br>
-                Target : {{ is_array(session('alert')['data']['target']) ? json_encode(session('alert')['data']['target']) : session('alert')['data']['target'] }} <br>
-                Jumlah : {{ is_array(session('alert')['data']['jumlah']) ? json_encode(session('alert')['data']['jumlah']) : session('alert')['data']['jumlah'] }}
+                Layanan : {{ session('alert')['data']['layanan'] }} <br>
+                Target : {{ session('alert')['data']['target'] }} <br>
+                Jumlah : {{ session('alert')['data']['jumlah'] }} <br>
+                Tgl Pemesanan : {{ RZWHelper::FormatTanggal(session('alert')['data']['tanggal']) }}
             </div>
         @endif
         <div class="card card-primary card-outline mb-4"> <!--begin::Header-->

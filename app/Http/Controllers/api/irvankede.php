@@ -178,6 +178,7 @@ class irvankede extends Controller
                         'layanan' => $layanan['category'] .' | ' . $layanan['name'],
                         'target' => $target,
                         'jumlah' => $jumlah,
+                        'tanggal' => now(),
                     ]
                 ]);
 
