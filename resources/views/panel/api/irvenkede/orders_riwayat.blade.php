@@ -61,7 +61,6 @@
                                 <td>{{ $layanan['category'] }}</td>
                                 <td>{{ $layanan['name'] }}</td>
                                 <td class="text-center">Rp {{ RZWHelper::FormatNumber($item->nominal) }}</td>
-                                <td class="text-center">{{ RZWHelper::FormatTanggal($item->created_at) }}</td>
                                 <td class="text-center">{{ RZWHelper::FormatNumber($datas['jumlah']) }}</td>
 
                                 @php
@@ -90,6 +89,7 @@
                                 <td class="text-center">
                                     <span class="badge {{ $statusClass }}">{{ ucfirst($status) }}</span>
                                 </td>
+                                <td class="text-center">{{ RZWHelper::FormatTanggal($item->created_at) }}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#{{ $item->id_transaksi }}">
