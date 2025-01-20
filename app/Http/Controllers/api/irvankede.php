@@ -258,7 +258,10 @@ class irvankede extends Controller
 
             'id' => $id_order,
         ];
-        $response = Http::asForm()->post('https://irvankedesmm.co.id/api/status', $data);
+        $response = Http::timeout(30)
+        ->retry(3, 100)
+        ->asForm()
+        ->post('https://irvankedesmm.co.id/api/status', $data);
         $data = $response->json(null, true);
         if (!$data['status']) {
             return [
