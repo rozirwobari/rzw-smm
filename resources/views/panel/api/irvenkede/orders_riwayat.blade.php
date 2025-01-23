@@ -65,7 +65,7 @@
 
                                 @php
                                     $statusClass = '';
-                                    $status = $item->nominal;
+                                    $status = $item->status;
                                     // $status = RZWHelper::APICheckOrderIrvanKede($item->api_orderid)['data']['status'];
                                     switch ($status) {
                                         case 'Success':
