@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use App\Models\TransaksiModels;
 use App\Helpers\RZWHelpers;
-use App\Http\Controllers\api\buzzerpanel;
+use App\Http\Controllers\api\irvankede;
 class TransaksiUpdate implements ShouldQueue
 {
     use Queueable;
@@ -30,8 +30,8 @@ class TransaksiUpdate implements ShouldQueue
             
         foreach ($transactions as $transaction) {
             try {
-                $buzzerpanel = new buzzerpanel();
-                $response = $buzzerpanel->CheckOrder($transaction->api_orderid);
+                $irvankede = new irvankede();
+                $response = $irvankede->CheckOrder($transaction->api_orderid);
                 if (isset($response['data']['status'])) {
                     $transaction->update([
                         'status' => $response['data']['status'],

@@ -65,7 +65,8 @@
 
                                 @php
                                     $statusClass = '';
-                                    $status = RZWHelper::APICheckOrderIrvanKede($item->api_orderid)['data']['status'];
+                                    $status = $item->nominal;
+                                    // $status = RZWHelper::APICheckOrderIrvanKede($item->api_orderid)['data']['status'];
                                     switch ($status) {
                                         case 'Success':
                                             $statusClass = 'text-bg-success';
