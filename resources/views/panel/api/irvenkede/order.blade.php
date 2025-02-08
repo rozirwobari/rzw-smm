@@ -28,6 +28,7 @@
         @if (session('alert') && isset(session('alert')['data']))
             <div class="alert alert-success" role="alert">
                 <b>{{ session('alert')['title'] }}</b><br>
+                Order ID : {{ session('alert')['data']['order_id'] }} <br>
                 Layanan : {{ session('alert')['data']['layanan'] }} <br>
                 Target : {{ session('alert')['data']['target'] }} <br>
                 Jumlah : {{ session('alert')['data']['jumlah'] }} <br>

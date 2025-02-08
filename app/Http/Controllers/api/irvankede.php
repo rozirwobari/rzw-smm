@@ -178,6 +178,7 @@ class irvankede extends Controller
                         'layanan' => $layanan['category'] .' | ' . $layanan['name'],
                         'target' => $target,
                         'jumlah' => $jumlah,
+                        'order_id' => $responseirvankede['data']['id'],
                         'tanggal' => now(),
                     ]
                 ]);
@@ -189,7 +190,6 @@ class irvankede extends Controller
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
-
 
     /**
      * Display a listing of the resource.
