@@ -93,18 +93,18 @@
                                 <td class="text-center">{{ RZWHelper::FormatTanggal($item->created_at) }}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#{{ $item->api_orderid }}">
+                                        data-bs-target="#{{ $item->id_transaksi }}">
                                         Detail
                                     </button>
 
 
-                                    <div class="modal fade" id="{{ $item->api_orderid }}" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="{{ $item->api_orderid }}"
+                                    <div class="modal fade" id="{{ $item->id_transaksi }}" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="{{ $item->id_transaksi }}"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="{{ $item->api_orderid }}">Detail Pesanan
+                                                    <h1 class="modal-title fs-5" id="{{ $item->id_transaksi }}">Detail Pesanan
                                                     </h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
